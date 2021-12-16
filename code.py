@@ -34,8 +34,8 @@ while True:
         mixer.voice[0].play(sample2)
         sample2triggered = True    
     
-    if trigger1.value < TRIGGER_VALUE:
+    if trigger1.value <= TRIGGER_VALUE:
         sample1triggered = False
 
-    if trigger2.value > TRIGGER_VALUE:
+    if trigger2.value <= TRIGGER_VALUE:
         sample2triggered = False   
