@@ -31,7 +31,7 @@ while True:
         sample1triggered = True
 
     if trigger2.value > TRIGGER_VALUE and sample2triggered == False:
-        mixer.voice[0].play(sample2)
+        mixer.voice[1].play(sample2)
         sample2triggered = True    
     
     if trigger1.value <= TRIGGER_VALUE:
