@@ -1,25 +1,25 @@
-import time
 import board
 import analogio
 import digitalio
 import audiobusio
 import audiocore
 import audiomixer
+import config
 
-TRIGGER_VALUE = 20000
-SAMPLE1 = open("samples/kick.wav", "rb")
-SAMPLE2 = open("samples/sd.wav", "rb")
-
+TRIGGER_VALUE = config.TRIGGER_VALUE
 trigger1 = analogio.AnalogIn(board.A0)
 trigger2 = analogio.AnalogIn(board.A1)
 led = digitalio.DigitalInOut(board.LED)
 led.direction = digitalio.Direction.OUTPUT
 
 audio = audiobusio.I2SOut(board.GP10, board.GP11, board.GP9)
-sample1 = audiocore.WaveFile(SAMPLE1)
-sample2 = audiocore.WaveFile(SAMPLE2)
+sample1 = audiocore.WaveFile(open(config.SAMPLE1_PATH, "rb"))
+sample2 = audiocore.WaveFile(open(config.SAMPLE2_PATH, "rb"))
 mixer = audiomixer.Mixer(voice_count=2, sample_rate=44100, channel_count=1,
                          bits_per_sample=16, samples_signed=True)
+mixer.voice[0].level = config.SAMPLE1_LEVEL
+mixer.voice[1].level = config.SAMPLE2_LEVEL
+
 audio.play(mixer)
 sample1triggered = False
 sample2triggered = False

@@ -1,0 +1,10 @@
+# ADV reading that will trigger a sample
+TRIGGER_VALUE = 20000
+
+# Sample paths
+SAMPLE1_PATH = "samples/kick.wav"
+SAMPLE2_PATH = "samples/sd.wav"
+
+# Sample volume, float between 0 & 1
+SAMPLE1_LEVEL = 1
+SAMPLE2_LEVEL = 1
